@@ -1,0 +1,23 @@
+function searcher(val){
+    const id = "drive_folder_id";
+    const folder = DriveApp.getFolderById(id);
+    const result = DriveApp.searchFiles('title contains "' + val +'"' ); //this will help you find the files having same initials
+    const res = [];
+    while (result.hasNext()) {
+        const file = result.next();
+        const results = {};
+        results.id = file.getId();
+        results.url = file.getUrl();
+        results.size = file.getSize();
+        results.owner = file.getOwner();
+        res.push(results);
+    }
+    return res;
+
+}
+
+function startSearch(){
+    const searchTerm = 'new'; // here you can change the search term, i.e. your initials 
+    const found = searcher(searchTerm)
+    Logger.log(found)
+}
