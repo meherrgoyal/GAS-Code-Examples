@@ -1,0 +1,14 @@
+to use this code, follow the steps below:
+
+1. Create a new Spreadsheet
+2. give it a name
+3. Give a name to its sheet as well
+4. Make table having headers as [id, first name, last name, title, message, email]
+5. fill some data in these columns
+6. go to the extensions >> Apps Script
+7. Change the title of the project to as desired.
+8. use the script file code in the code.gs file 
+9. replace your spreadsheet id
+10. replace your sheet name
+11. Give permissions to it
+12. Run and send the emails
