@@ -1,0 +1,25 @@
+
+// this function is fetching data from the sheet, where the columns are as follows ['id', 'first name', 'last name', 'title', 'message', 'email']
+function sender(){
+    const ss = "you_spreadsheet_id";
+    const sheet = ss.getSheetByName("sheet_Name");
+    const data = sheet.getDataRange().getValues();
+    const people = data.slice(1);
+    people.forEach((person) => {
+        sendMyEmail(person)
+    });
+}
+
+//this function will replace the html body with the actual data fetched from spreadsheet and then send email to each of them mentioned.
+function sendMyEmail(person){
+    const email = person[5];
+    let htmlBody = HtmlService.createHtmlOutputFromFile('email');
+    htmlBody = htmlBody.replace(/#TITLE/g, person[3])
+    htmlBody = htmlBody.replace(/#FIRST/g, person[3])
+    htmlBody = htmlBody.replace(/#LAST/g, person[3])
+    htmlBody = htmlBody.replace(/#MESSAGE/g, person[3])
+
+    MailApp.sendEmail(email, "from list", '', {
+        htmlBody: htmlBody
+    })
+}
